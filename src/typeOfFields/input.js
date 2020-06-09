@@ -44,13 +44,15 @@ class Input extends Component {
                         {this.props.formJson.label}
                     </span>
                     {/*Input*/}
-                    <input type={this.props.formJson.inputType} onChange={e=>this.changeValue(e)} value={this.state.text}
+                    <input className="form-control" type={this.props.formJson.inputType} onChange={e=>this.changeValue(e)} value={this.state.text}
                          maxLength={this.props.formJson.maxlength}
                          name={this.props.formJson.name}
                          placeholder={this.props.formJson.placeholder}
                          step={this.props.formJson.step}
                          min={this.props.formJson.min}
-                         max={this.props.formJson.max}/>
+                         max={this.props.formJson.max}
+                         readOnly={this.props.readOnly}
+                         />
                     {this.props.formJson.Unit}
                 </label>
             </div>

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 
 class Checkbox extends Component {
-
-
-
     constructor(props){
         super();
 
@@ -14,9 +11,7 @@ class Checkbox extends Component {
         }
         props.jsonCollector({[props.formJson.name]: this.state.is_checked})
 
-
     }
-
 
     handleInputChange = () => {
         this.setState({
@@ -37,20 +32,23 @@ class Checkbox extends Component {
         )
     }
 
+    componentDidMount(){
+        $('#formBuilder input[type=checkbox]').checkbox();
+    }
+
+
     render() {
         return (
             <div className="field-input">
                 <div className="radio-box">
-                        <label className="mainLabel">
-                            <span>
-                            {this.props.formJson.label}
-                            </span>
+                        <label className="mainLabel radiobox">
                             {/*Input*/}
                             <input
                                 type="checkbox"
                                 checked={this.state.is_checked}
                                 onChange={()=>this.handleInputChange()}
                             />
+                            <span>{this.props.formJson.label}</span>
                         </label>
                 </div>
             </div>

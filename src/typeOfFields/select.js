@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Select extends Component {
 
 
@@ -26,11 +25,14 @@ class Select extends Component {
         this.props.jsonCollector({[this.props.formJson.name]: e.target.value})
     }
 
+    componentDidMount(){
+        $('select[name=' + this.props.formJson.name + ']').combobox();
+    }
 
     render() {
         return (
             <div className="field-input">
-                <label className="mainLabel">
+                <span className="mainLabel">
                     {/*Label*/}
                     <span data-tip={this.props.formJson.description}>
                         {this.props.formJson.label}
@@ -45,7 +47,7 @@ class Select extends Component {
                                 <option key={field.value} value={field.value}>{field.label}</option>
                             ))}
                     </select>
-                </label>
+                </span>
             </div>
         );
     }

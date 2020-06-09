@@ -23,9 +23,6 @@ class FieldInGenerator extends Component {
 
 
         this.state = newState
-
-        console.log(props)
-
         this.jsonField = {
                             ...props.jsonData,
                             "typeField": props.actualElem.typefield
@@ -52,29 +49,34 @@ class FieldInGenerator extends Component {
         return this.counter++;
     }
 
+    // this.props.jsonData.readOnly
 
     render() {
         return (
             <div>
                 <div className={"headerBar index_"+this.props.actualElem.index}>
-                    <b>Field {this.props.jsonData.label}</b>
-                    <span className="typeField">({this.props.actualElem.typefield})</span>
-                    <span className="requied">{(this.props.jsonData.required)?("*"):("")}</span>
-                    <button onClick={()=>{
-                        this.setState({
-                            ...this.state,
-                            generalFieldsShow: !this.state.generalFieldsShow
-                        })
-                    }}>
-                        Edit field
-                    </button>
-                    <button onClick={()=>{
-                        if(window.confirm("Are you sure you want delete this field?")){
-                            this.props.deleteField(this.props.actualElem.index)
+                    <div>
+                        <b>Field {(this.props.jsonData.readOnly) ? this.props.jsonData.label : ""}</b>
+                        <span className="typeField">({this.props.actualElem.typefield})</span>
+                        <span className="requied">{(this.props.jsonData.required)?("*"):("")}</span>
+                    </div>
+                    <div className="buttons">
+
+                        {!this.props.jsonData.readOnly &&
+                        <button className="btn btn-secondary delete_button" onClick={()=>{
+                            if(window.confirm("Are you sure you want delete this field?")){
+                                this.props.deleteField(this.props.actualElem.index)
+                            }
+                        }}><i className="material-icons">delete</i>Delete field</button>
                         }
-                    }}>
-                        Delete field
-                    </button>
+
+                        <button className="btn btn-secondary edit_button" onClick={()=>{
+                            this.setState({
+                                ...this.state,
+                                generalFieldsShow: !this.state.generalFieldsShow
+                            })
+                        }}><i className="material-icons">edit</i>Edit field</button>
+                    </div>
                 </div>
                 <div className={(this.state.generalFieldsShow)?"mainField show":"mainField hidden"}>
                     <div className="fieldsTop">
@@ -88,17 +90,17 @@ class FieldInGenerator extends Component {
                                 if(actualInput)
                                     switch (actualInput.inputType){
                                         case 'textarea':
-                                            return <Textarea index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Textarea readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'text':
-                                            return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'number':
-                                            return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'checkbox':
-                                            return <Checkbox index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Checkbox readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'optionBuilder':
-                                            return <OptionBuilder index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <OptionBuilder readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'select':
-                                            return <Select index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Select readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                     }
                             }
                         })}
@@ -109,30 +111,32 @@ class FieldInGenerator extends Component {
                                 if(actualInput)
                                     switch (actualInput.inputType){
                                         case 'textarea':
-                                            return <Textarea index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Textarea readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'text':
-                                            return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'number':
-                                            return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'checkbox':
-                                            return <Checkbox index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Checkbox readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'optionBuilder':
-                                            return <OptionBuilder index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <OptionBuilder readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         case 'select':
-                                            return <Select index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                            return <Select readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                     }
                             }
                         })}
                     </div>
                     <div className="button-show-more">
-                        <button onClick={()=>{
+                        <button className="btn btn-secondary" onClick={()=>{
                             this.setState({
                                 ...this.state,
                                 extraFieldsShow: !this.state.extraFieldsShow
                             })
                         }}>
                             {(this.state.extraFieldsShow)?"Hide extra fields":"Show extra fields"}
+                            {(this.state.extraFieldsShow)?<i className="material-icons">expand_less</i>:<i className="material-icons">expand_more</i>}
                         </button>
+                        
                     </div>
                     <div className={(this.state.extraFieldsShow)?"hideExtraOptions show":"hideExtraOptions hidden"}>
                         <div className="fieldsBottom">
@@ -146,17 +150,17 @@ class FieldInGenerator extends Component {
                                     if(actualInput)
                                         switch (actualInput.inputType){
                                             case 'textarea':
-                                                return <Textarea index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Textarea readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'text':
-                                                return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'number':
-                                                return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'checkbox':
-                                                return <Checkbox index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Checkbox readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'optionBuilder':
-                                                return <OptionBuilder index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <OptionBuilder readOnly={this.props.jsonData.readOnly} readOnly={this.props.formJson.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'select':
-                                                return <Select index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Select readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         }
                                 }
                             })}
@@ -167,17 +171,17 @@ class FieldInGenerator extends Component {
                                     if(actualInput)
                                         switch (actualInput.inputType){
                                             case 'textarea':
-                                                return <Textarea index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Textarea readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'text':
-                                                return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'number':
-                                                return <Input index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Input readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'checkbox':
-                                                return <Checkbox index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Checkbox readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'optionBuilder':
-                                                return <OptionBuilder index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <OptionBuilder readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                             case 'select':
-                                                return <Select index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
+                                                return <Select readOnly={this.props.jsonData.readOnly} index={this.props.actualElem.index} updateLabel={this.updateLabel} jsonData={this.jsonField} jsonCollector={this.addToJson} key={this.getCounter()} formJson={actualInput}/>
                                         }
                                 }
                             })}

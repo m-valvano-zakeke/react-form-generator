@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './FormBuilder.css';
 import Field from './Field.js'
 import FieldInGenerator from './FieldInGenerator.js'
+import { T } from "../../../Scripts/utils/Helpers"
+
 class FormBuilder extends Component {
 
     jsonToLoad=[]
@@ -29,8 +31,6 @@ class FormBuilder extends Component {
 
             this.state.fieldsToEdit = arrayRes
             this.state.formToGenerate = []
-
-
         }
     }
 
@@ -60,7 +60,12 @@ class FormBuilder extends Component {
     pos = 0
     outsideForm = false
 
-
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
 
     componentDidMount(){
 
@@ -264,29 +269,28 @@ class FormBuilder extends Component {
             }
     }
 
-
     fields = {
         text: {
             showFields: new Set(['type']),
-            classIcon: 'fa-pencil-alt',// class for icon from notawesome
-            label: "Text field",//show this label
+            classIcon: 'text_fields',// class for icon from notawesome
+            label: T._("Text field","Admin"),//show this label
             typeInput: "text",//Field recognize by this variable
             fields: {
                 'type' : {
                     'inputType': "select",
-                    'label': 'Type',
+                    'label': T._('Type','Admin'),
                     'name': 'type',
                     'options': [
                         {
-                            'label': 'text',
+                            'label': T._('text','Admin'),
                             'value': 'text'
                         },
                         {
-                            'label': 'email',
+                            'label': T._('email','Admin'),
                             'value': 'email'
                         },
                         {
-                            'label': 'password',
+                            'label': T._('password','Admin'),
                             'value': 'password'
                         },
                         {
@@ -322,7 +326,7 @@ class FormBuilder extends Component {
             }
         },
         number: {
-            classIcon: 'fa-calculator',
+            classIcon: 'calculate',
             showFields: new Set([]),
             label: "Number",
             typeInput: "number",
@@ -357,20 +361,20 @@ class FormBuilder extends Component {
             }
         },
         textArea: {
-            classIcon: 'fa-align-left',
-            label: "Text area",
+            classIcon: 'format_align_left',
+            label: T._("Text area","Admin"),
             typeInput: "textArea",
             fields: {
                 'minLength': {
                     'inputType': "number",
-                    'label': 'Min length',
+                    'label': T._('Min length','Admin'),
                     'value': "",
                     'step' : '1',
                     'name': 'min_length'
                 },
                 'maxLength': {
                     'inputType': "number",
-                    'label': 'Max length',
+                    'label': T._('Max length','Admin'),
                     'value': "",
                     'step' : '1',
                     'name': 'max_length'
@@ -384,64 +388,64 @@ class FormBuilder extends Component {
                 },
                 'rows': {
                     'inputType': "number",
-                    'label': 'Rows',
+                    'label': T._('Rows','Admin'),
                     'value': "10",
                     'step' : '1',
                     'name': 'rows'
                 }
             },
         },
-        autocomplete: {
-            classIcon: 'fa-clone',
-            showFields: new Set(['optionBuilder']),
-            label: "Text autocomplete",
-            typeInput: "autocomplete",
-            fields: {
-                'optionBuilder': {
-                    'inputType': "optionBuilder",
-                    'label': 'Options',
-                    'value': "",
-                    'name': 'options'
-                },
-            }
-        },
+        // autocomplete: {
+        //     classIcon: 'fa-clone',
+        //     showFields: new Set(['optionBuilder']),
+        //     label: "Text autocomplete",
+        //     typeInput: "autocomplete",
+        //     fields: {
+        //         'optionBuilder': {
+        //             'inputType': "optionBuilder",
+        //             'label': 'Options',
+        //             'value': "",
+        //             'name': 'options'
+        //         },
+        //     }
+        // },
         inputRadio: {
-            classIcon: 'fa-clipboard-list',
+            classIcon: 'radio_button_checked',
             showFields: new Set(['optionBuilder']),
-            label: "Input Radio group",
+            label: T._("Input Radio group","Admin"),
             typeInput: "inputRadio",
             fields: {
                 'optionBuilder': {
                     'inputType': "optionBuilder",
-                    'label': 'Options',
+                    'label': T._('Options','Admin'),
                     'value': "",
                     'name': 'options'
                 },
             }
         },
         inputCheckbox: {
-            classIcon: 'fa-check-square',
+            classIcon: 'check_box',
             showFields: new Set([]),
-            label: "Checkbox",
+            label: T._("Checkbox","Admin"),
             typeInput: "inputCheckbox",
             fields: {
                 'defaultSelected' : {
                     'inputType': "checkbox",
-                    'label': 'Default selected',
+                    'label': T._('Default selected','Admin'),
                     'value': false,
                     'name': 'defaultSelected'
                 },
             }
         },
         select: {
-            classIcon: 'fa-flag',
+            classIcon: 'view_list',
             showFields: new Set(['optionBuilder']),
-            label: "Select",
+            label: T._("Select","Admin"),
             typeInput: "select",
             fields: {
                 'optionBuilder': {
                     'inputType': "optionBuilder",
-                    'label': 'Options',
+                    'label': T._('Options','Admin'),
                     'value': "",
                     'name': 'options'
                 },
@@ -450,57 +454,57 @@ class FormBuilder extends Component {
                 'placeholder',
             ])
         },
-        fileUpload: {
-            classIcon: 'fa-download',
-            showFields: new Set(['optionBuilder']),
-            label: "Upload file",
-            typeInput: "fileUpload",
-            fields: {
-            }
-        },
-        button: {
-            classIcon: 'fa-circle',
-            showFields: new Set(['type']),
-            label: "Button",
-            typeInput: "button",
-            fields: {
-                'type' : {
-                    'inputType': "select",
-                    'label': 'Type',
-                    'name': 'type',
-                    'options': [
-                        {
-                            'label': 'Button',
-                            'value': 'button'
-                        },
-                        {
-                            'label': 'Submit',
-                            'value': 'submit'
-                        },
-                        {
-                            'label': 'Reset',
-                            'value': 'reset'
-                        },
-                    ]
-                },
-            },
-            banField: new Set([
-                'placeholder',
-                'defaultValue',
-                'required',
-                'tipText',
-                'name'
-            ])
-        },
+        // fileUpload: {
+        //     classIcon: 'fa-download',
+        //     showFields: new Set(['optionBuilder']),
+        //     label: "Upload file",
+        //     typeInput: "fileUpload",
+        //     fields: {
+        //     }
+        // },
+        // button: {
+        //     classIcon: 'fa-circle',
+        //     showFields: new Set(['type']),
+        //     label: "Button",
+        //     typeInput: "button",
+        //     fields: {
+        //         'type' : {
+        //             'inputType': "select",
+        //             'label': 'Type',
+        //             'name': 'type',
+        //             'options': [
+        //                 {
+        //                     'label': 'Button',
+        //                     'value': 'button'
+        //                 },
+        //                 {
+        //                     'label': 'Submit',
+        //                     'value': 'submit'
+        //                 },
+        //                 {
+        //                     'label': 'Reset',
+        //                     'value': 'reset'
+        //                 },
+        //             ]
+        //         },
+        //     },
+        //     banField: new Set([
+        //         'placeholder',
+        //         'defaultValue',
+        //         'required',
+        //         'tipText',
+        //         'name'
+        //     ])
+        // },
         header: {
-            classIcon: 'fa-heading',
+            classIcon: 'drag_handle',
             showFields: new Set(['headerLevel','Headertext']),
-            label: "Header",
+            label: T._("Header","Admin"),
             typeInput: "header",
             fields: {
                 'Headertext' : {
                     'inputType': "text",
-                    'label': 'Header text',
+                    'label': T._('Header text','Admin'),
                     'value': "",
                     'name': 'headertext'
                 },
@@ -547,9 +551,9 @@ class FormBuilder extends Component {
             ])
         },
         paragraph: {
-            classIcon: 'fa-paragraph',
+            classIcon: 'format_textdirection_l_to_r',
             showFields: new Set(['content']),
-            label: "Paragraph",
+            label: T._("Paragraph","Admin"),
             typeInput: "paragraph",
             fields: {
                 'content': {
@@ -557,7 +561,7 @@ class FormBuilder extends Component {
                     'label': 'Content',
                     'value': "",
                     'name': 'content',
-                    'placeholder': 'Put paragraph content'
+                    'placeholder': T._('Put paragraph content','Admin')
                 },
             },
             banField: new Set([
@@ -570,30 +574,30 @@ class FormBuilder extends Component {
                 'name'
             ])
         },
-        hiddenInput: {
-            classIcon: 'fa-eye-slash',
-            showFields: new Set(['value']),
-            label: "Hidden input",
-            typeInput: "hiddenInput",
-            fields: {
-                'value': {
-                    'inputType': "text",
-                    'label': 'Value',
-                    'value': "",
-                    'name': 'value'
-                },
-            },
-            banField: new Set([
-                'placeholder',
-                'defaultValue',
-                'required',
-                'tipText',
-                'required',
-                'label',
-                'defaultValue',
-                'class'
-            ])
-        },
+        // hiddenInput: {
+        //     classIcon: 'fa-eye-slash',
+        //     showFields: new Set(['value']),
+        //     label: "Hidden input",
+        //     typeInput: "hiddenInput",
+        //     fields: {
+        //         'value': {
+        //             'inputType': "text",
+        //             'label': 'Value',
+        //             'value': "",
+        //             'name': 'value'
+        //         },
+        //     },
+        //     banField: new Set([
+        //         'placeholder',
+        //         'defaultValue',
+        //         'required',
+        //         'tipText',
+        //         'required',
+        //         'label',
+        //         'defaultValue',
+        //         'class'
+        //     ])
+        // },
         toAllFields: {
             showFields: new Set([
                 'required',
@@ -602,19 +606,19 @@ class FormBuilder extends Component {
             fields: {
                 'label' : {
                     'inputType': "text",
-                    'label': 'Label',
+                    'label': T._('Label','Admin'),
                     'value': "",
                     'name': 'label'
                 },
                 'name' : {
                     'inputType': "text",
-                    'label': 'Name',
+                    'label': T._('Name','Admin'),
                     'value': "",
                     'name': 'name'
                 },
                 'required' : {
                     'inputType': "checkbox",
-                    'label': 'Required',
+                    'label': T._('Required','Admin'),
                     'value': false,
                     'name': 'required'
                 },
@@ -626,7 +630,7 @@ class FormBuilder extends Component {
                 },
                 'tipText': {
                     'inputType': "text",
-                    'label': 'Tip',
+                    'label': 'Title',
                     'value': "",
                     'name': 'tipText'
                 },
@@ -645,10 +649,6 @@ class FormBuilder extends Component {
             },
         }
     }
-
-
-
-
 
     state={
         fieldsInForm: [],
@@ -722,27 +722,25 @@ class FormBuilder extends Component {
         delete this.formJson[index];
     }
 
-
-
     render() {
         return (
         <div id="formBuilder">
             <div id="formBuilder-form" className="formBuilderGroup">
-                {this.state.fieldsToEdit.map(item=>
-                            (
-                            <div key={item.number}  data-order-form-builder={item.number} draggable="true" className={item.classList+" elementOFDrag"}>
-                    {console.log(item.optionalJson)}
-                <FieldInGenerator deleteField={this.deleteField} addToFormJson={this.addToFormJson}  actualElem={item} definedFields={this.fields} jsonData={item.optionalJson || this.formJson[item.index] || {}} />
-                    </div>
-                )
-                )}
+                
+                {
+                    this.state.fieldsToEdit.map(item=> (
+                    <div key={item.number}  data-order-form-builder={item.number} draggable="true" className={item.classList+" elementOFDrag"}>
+                            <FieldInGenerator deleteField={this.deleteField} addToFormJson={this.addToFormJson}  actualElem={item} definedFields={this.fields} jsonData={item.optionalJson || this.formJson[item.index] || {}} />
+                    </div>))
+                }
             </div>
             <div id="optionColumn">
-            {Object.keys(this.fields).map((field)=>{
-                if (field!="toAllFields")
-                    return <Field data-field={this.fields[field]} key={this.getCounter()} className="elementOFDrag"/>
-            })}
-    <       /div>
+                {Object.keys(this.fields).map((field)=>{
+                    if (field!="toAllFields")
+                        return <Field data-field={this.fields[field]} key={this.getCounter()} className="elementOFDrag"/>
+                })}
+                <button type="button" id="preview-form" className="btn btn-primary" onClick={() => {this.props.onSaveForm(this.getJson())} }>Preview</button>
+            </div>
         </div>
     );
     }

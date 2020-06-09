@@ -33,10 +33,11 @@ class OptionBuilder extends Component {
                         {(this.props.formJson.required)?(<span className="requiredStar">*</span>):("")}
                     </span>
                     <div className="optionFields">
-                        <ol>
-                            {this.state.resultOption.map((item)=>(
+                        <ul>
+                            {this.state.resultOption.map((item, index)=>(
                                 <li key={item.pos}>
-                                    <input type="text" placeholder="Label" value={item.label || ""} onChange={(e)=>{
+                                    <span className="index">{index+1}.</span>
+                                    <input type="text" className="form-control" placeholder="Label" value={item.label || ""} onChange={(e)=>{
                                         this.setState({
                                             ...this.state,
                                             resultOption: [
@@ -50,7 +51,7 @@ class OptionBuilder extends Component {
                                             this.props.jsonCollector({[this.props.formJson.name]: this.state.resultOption})
                                         })
                                     }}/>
-                                    <input type="text" placeholder="Value" value={item.value || ""} onChange={(e)=>{
+                                    <input type="text" className="form-control" placeholder="Value" value={item.value || ""} onChange={(e)=>{
                                         this.setState({
                                             ...this.state,
                                             resultOption: [
@@ -66,6 +67,8 @@ class OptionBuilder extends Component {
                                     }}/>
                                     {(item.pos==1)?(""):(
                                             <button
+                                                className="btn btn-secondary btn-remove-option"
+                                                title="Remove option"
                                                 onClick={()=>{
                                                     this.setState({
                                                         ...this.state,
@@ -78,12 +81,12 @@ class OptionBuilder extends Component {
                                                         ]
                                                     })
                                                 }}
-                                            >X</button>
+                                            ><i className="material-icons">cancel</i></button>
                                         )}
                                 </li>
                             ))}
-                        </ol>
-                        <button onClick={()=>{
+                        </ul>
+                        <button className="btn btn-secondary" onClick={()=>{
                             this.setState({
                                 ...this.state,
                                 resultOption: [
@@ -92,7 +95,7 @@ class OptionBuilder extends Component {
                                 ]
                             })
                             this.getCounter()
-                        }}>Add position</button>
+                        }}><i className="material-icons">add</i>Add option</button>
                     </div>
                 </label>
             </div>

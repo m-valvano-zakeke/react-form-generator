@@ -48,9 +48,7 @@ class TextArea extends Component {
                                 {this.props.formJson.label}
                             </span>
                 {/*Input*/}
-                <textarea placeholder={this.props.formJson.placeholder} onChange={e=>this.changeValue(e)} defaultValue={this.state.text}>
-
-                            </textarea></label>
+                <textarea placeholder={this.props.formJson.placeholder} onChange={e=>this.changeValue(e)} defaultValue={this.state.text} {...this.props.formJson.readOnly ? "disabled":""}></textarea></label>
             </div>
         );
     }

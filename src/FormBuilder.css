@@ -1,44 +1,41 @@
 #formBuilder{
     display: flex;
     text-align: left;
-    width: 1000px;
-    margin: 200px auto;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 }
 #formBuilder #formBuilder-form{
-    width: 70%;
-    border: 1px solid #1e5799;
+    width: calc(70% - 18px);
+    border: 1px solid #e1e1e1; 
+    background: #fff;
     padding-bottom: 150px;
 }
 #formBuilder #optionColumn{
     width: 30%;
-    border: 1px solid #000;
+    margin-left: 18px;
 }
+
+#formBuilder #preview-form{
+    width: 100%;
+    margin-top: 50px;
+}
+
 #formBuilder .field{
     width: 100%;
     text-align: left;
     box-sizing: border-box;
-    padding: 10px 10px;
-    color: #ffffff;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4096ee+0,82b7ed+100 */
-    background: rgb(64,150,238); /* Old browsers */
-    background: -moz-linear-gradient(-45deg, rgba(64,150,238,1) 0%, rgba(130,183,237,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, rgba(64,150,238,1) 0%,rgba(130,183,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, rgba(64,150,238,1) 0%,rgba(130,183,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4096ee', endColorstr='#82b7ed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    border-bottom: 1px solid #ffffff;
+    padding: 14px 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    cursor: pointer;
 }
-#formBuilder .field.actualmoving{
-    background: #356EB1;
+
+#formBuilder .field:last-child{
+    margin-bottom: 0;
 }
-#formBuilder #formBuilder-form > div > div{
-    background: #f9fdff;
-}
-#formBuilder #formBuilder-form > div{
-    border-bottom: #1e5799 2px solid;
-}
-#formBuilder #formBuilder-form > div > div{
-    padding: 10px;
-}
+
 #formBuilder #formBuilder-form .actuallyMoving{
     height: 0;
     padding: 0;
@@ -46,76 +43,64 @@
 }
 #formBuilder .placeholder-down{
     padding-bottom: 20px;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&1+0,0+100;Blue+to+Transparent */
-    background: -moz-linear-gradient(-45deg, rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 #formBuilder .placeholder-up{
     padding-top: 20px;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&1+0,0+100;Blue+to+Transparent */
-    background: -moz-linear-gradient(-45deg, rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
-#formBuilder .placeholder{
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100&1+0,0+100;Blue+to+Transparent */
-    background: -moz-linear-gradient(-45deg, rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-}
-#formBuilder #formBuilder-form > div.actualmoving > div{
-    /*transform:translateX(-9999px)*/
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
-    background: #1e5799; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    color: #ffffff;
-}
-#formBuilder .elementOFDrag input{
-    border: 0px;
-    border-bottom: 1px solid #000000;
+
+#formBuilder #formBuilder-form > div.actualmoving {
     background: #fff;
-    box-shadow: none;
-    padding: 8px;
-    margin-left: 20px;
+    opacity: 0.8;
+}
+
+#formBuilder #formBuilder-form > div.actualmoving > div{
+    transform:translateX(-9999px);
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+50,207cca+51,7db9e8+100;Blue+Gloss+Default */
+    background: #ccc; /* Old browsers */
+}
+
+#formBuilder .elementOFDrag > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#formBuilder .elementOFDrag input{
+    background: #fff;
 }
 #formBuilder .elementOFDrag textarea{
-    border: 0px;
-    border-bottom: 1px solid #000000;
-    background: #fff;
-    box-shadow: none;
-    padding: 8px;
-    width: 60%;
-    margin-left: 20px;
+    padding: 10px;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    background-color: #ffffff;
+    background-size: cover;
+    font-size: 12px;
+    text-decoration: none solid rgba(38, 50, 56, 0.3);
 }
-#formBuilder .mainLabel span{
+#formBuilder .mainLabel span:not(.ui-select-current-value){
     display: inline-block;
-    width: 20%;
     box-sizing: border-box;
+    font-size: 14px;
+    margin-bottom: 4px;
 }
-#formBuilder .inputLabel input,
-#formBuilder .mainLabel select,
-#formBuilder .mainLabel option{
-    width: 60%;
-    height: 20px;
-    line-height: 20px;
-    margin-left: 0;
-    border-radius: 0px;
-}
-#formBuilder .mainLabel span{
-    vertical-align: top;
-    display: inline-block;
-    margin-top: 14px;
-}
+
 #formBuilder label{
-    display: block;
+    display: flex;
+    flex-direction:column;
 }
+
+#formBuilder label.radiobox{
+    display: flex;
+    flex-direction:row;
+}
+
+#formBuilder .ui-select,
+#formBuilder .ui-select:hover,
+#formBuilder input:hover
+{
+    background: #fff !important;
+}
+
 #formBuilder .mainLabel input[type=checkbox]{
     width: auto;
     height: 15px;
@@ -138,111 +123,147 @@
     display: none;
 }
 #formBuilder .headerBar{
-    padding-bottom: 13px;
-    line-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 15px 13px 30px;
+    border-bottom: 1px solid #e1e1e1;
 }
-.#formBuilder mainField{
-    border-top: 1px solid #82B4EA;
+#formBuilder .headerBar > div{
+    display: flex;
+    align-items: center;
+}
+#formBuilder div.no-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: calc(30% + 18px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: #e1e1e1;
+    align-items: center;
+    height: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#formBuilder div.no-elements > i {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+#formBuilder .mainField{
+    background: #fafafa;
+    padding: 0 20px;
 }
 #formBuilder .headerBar .requied{
     color: red;
-    font-size: 25px;
 }
 #formBuilder .headerBar button{
     float: right;
+    line-height: 9px;
+    text-transform: unset;
+    font-weight: 500;
 }
+
+#formBuilder .headerBar button > i{
+    margin-right: 5px;
+    font-size: 18px;
+}
+
 #formBuilder .headerBar button,
 #formBuilder .optionFields>button{
-    background: #1e5799;
-    display: inline-block;
-    padding: 8px 13px;
-    border-radius: 35px;
-    color: #ffffff;
-    border: 1px solid #1e5799;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    padding: 0 13px;
     margin: 0 5px;
     font-size: 14px;
-    color: #ffffff;
     cursor: pointer;
-    -webkit-transition: all 100ms linear;
-    -moz-transition: all 100ms linear;
-    -ms-transition: all 100ms linear;
-    -o-transition: all 100ms linear;
-    transition: all 100ms linear;
+    min-width: unset;
+    min-height: unset;
 }
-#formBuilder .headerBar button:hover,
-#formBuilder .optionFields>button:hover{
-    color: #1e5799;
-    background: #ffffff;
+
+#formBuilder .optionFields>button{   
+    float: left !important;
+    margin: 0 0 10px 0;
+    padding: 0;
+
 }
+
 #formBuilder .button-show-more{
-    border-top: 1px solid #ccc;
-    text-align: center;
     margin-top: 20px;
     position: relative;
-    padding-bottom: 20px;
+    padding: 0 10px 20px 10px;
+    display: flex;
+    justify-content: flex-end;
 }
 #formBuilder .button-show-more button{
-    display: inline-block;
-    background: #f9fdff;
-    color: #000000;
-    border: 0;
-    position: absolute;
-    text-shadow: none;
-    margin-top: -7px;
-    font-size: 12px;
-    line-height: 14px;
-    text-align: center;
-    width: 110px;
-    left: calc(50% - 55px);
-    right: calc(50% - 55px);
+    background: transparent;
+    padding: 0;
+    border: none;
+    text-transform: uppercase;
+    min-width: unset;
+    min-height: unset;
 }
 #formBuilder .typeField{
     vertical-align: bottom;
     font-size: 14px;
-    color: #cccccc;
+    margin-left: 5px;
 }
 #formBuilder .optionFields{
     width: 60%;
     display: inline-block;
 }
-#formBuilder .optionFields ol{
-    padding-left: 10px;
+#formBuilder .optionFields ul{
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 5px;
 }
-#formBuilder .optionFields ol input:first-child{
+#formBuilder .optionFields ul input:first-child{
     margin-left: 0;
 }
-#formBuilder .optionFields ol li{
+#formBuilder .optionFields ul li{
     margin-bottom: 7px;
+    display: flex;
+    align-items: center;
 }
-#formBuilder .optionFields ol input{
+
+#formBuilder .optionFields ul li > span.index{
+    margin-right: 5px;
+    margin-bottom: 0;
+}
+
+#formBuilder .optionFields ul input{
     width: 35%;
+    margin-right: 10px;
 }
-#formBuilder .optionFields ol button{
-    background: #1e5799;
+#formBuilder .optionFields ul button{
+    background: #fff;
     display: inline-block;
-    padding: 7px 11px;
-    border-radius: 5px;
-    color: #ffffff;
-    border: 1px solid #1e5799;
+    padding: 0;
     margin: 0 5px;
     font-size: 14px;
-    color: #ffffff;
     cursor: pointer;
-    -webkit-transition: all 100ms linear;
-    -o-transition: all 100ms linear;
-    transition: all 100ms linear;
-    line-height: 15px;
+    min-width: unset;
+    min-height: unset;
 }
-#formBuilder .optionFields ol button:hover{
-    background: #ffffff;
-    color: #1e5799;
+
+#formBuilder .optionFields ul button > i {
+    font-size: 22px;
+    margin-left: -5px;
 }
 #formBuilder .hideExtraOptions{
     padding-bottom: 20px;
+    margin-top: -10px;
 }
 #formBuilder .fieldToDrag i{
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 15px;
     font-size: 14px;
     line-height: 15px;
 }
@@ -263,3 +284,7 @@ pre, form{
 #formshower > div{
     width: 50%;
 }
+#formBuilder button:hover{
+    opacity: .8;
+}
+
