@@ -23,7 +23,7 @@
     "scripts": {
         "copy:css": "Copy \".\\src\\*.css\" \"C:\\Users\\Antonio\\Documents\\Lavoro\\Zakeke_Project\\Zakeke\\node_modules\\react-form-creator\\dist\\\"",
         "prepublish": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir ./dist",
-		"build": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir /Users/Antonio/Documents/Lavoro/Zakeke_Project/Zakeke/node_modules/react-form-creator/dist"
+        "build": "babel --plugins transform-es2015-modules-umd src --ignore __tests__ --out-dir /Users/Antonio/Documents/Lavoro/Zakeke_Project/Zakeke/node_modules/react-form-creator/dist"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.1",
